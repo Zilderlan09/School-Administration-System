@@ -15,5 +15,5 @@ As funções implementadas foram:
 10 - Atividades Extracurriculares
 11 - Sair
 
-Posteriormente pretendo implementar mais funcionalidade e fazer a separação por tópicos.
+Posteriormente, pretendo implementar mais funcionalidades e fazer a separação por tópicos.
 Vale resaltar que as funções não estão completas.
