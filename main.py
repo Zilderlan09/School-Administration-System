@@ -61,6 +61,7 @@ def menu_funcionario(escola, user_id):
         print("6. Registrar atividade extracurricular")
         print("7. Remover aluno")
         print("8. Consultar alunos matriculados")
+        print("9. Rastrear transporte escolar")
         print("0. Sair")
         opcao = input("Escolha uma opção: ")
         if opcao == "1":
@@ -116,6 +117,12 @@ def menu_funcionario(escola, user_id):
                 print("Alunos matriculados:")
                 for id_aluno, nome in alunos:
                     print(f"ID: {id_aluno} | Nome: {nome}")
+        elif opcao == "9":
+            try:
+                id_aluno = int(input("ID do aluno para rastrear transporte: "))
+                escola.rastrear_transporte(id_aluno)
+            except ValueError:
+                print("ID inválido.")
         elif opcao == "0":
             break
         else:
@@ -130,10 +137,18 @@ def menu_responsavel(escola, user_id):
     while True:
         print("\n--- Menu do Responsável ---")
         print("1. Consultar dados do aluno")
+        print("2. Pagar mensalidade")
+        print("3. Rastrear transporte escolar")
         print("0. Sair")
         opcao = input("Escolha uma opção: ")
         if opcao == "1":
             escola.consultar_dados_aluno(responsavel.id_aluno)
+        elif opcao == "2":
+            print("💳 Formas de pagamento disponíveis: PIX | Cartão de Crédito | Boleto")
+            forma_pagamento = input("Digite a forma de pagamento: ")
+            escola.processar_pagamento(responsavel.id_aluno, forma_pagamento)
+        elif opcao == "3":
+            escola.rastrear_transporte(responsavel.id_aluno)
         elif opcao == "0":
             break
         else:
