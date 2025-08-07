@@ -1,19 +1,54 @@
-# School-Administration-System
-Projeto Estruturado para a disciplina de Projeto de Software
+# 📚 Sistema de Administração Escolar
 
-Hoje foram feitas as implementações das funções princiapis além do menu de seleção.
-As funções implementadas foram: 
-1 - Matrícula Escolar
-2 - Gerenciamento de Turmas e Horários 
-3 - Registro de Presença
-4 - Gerenciamento de Notas
-5 - Distriuição dos materiais
-6 - Portal do Pais
-7 - Pagamentos de mendalidades
-8 - Gerenciamento de Notas
-9 - Rastreamennto de Ônibus escolar
-10 - Atividades Extracurriculares
-11 - Sair
+## 📋 Sobre o Projeto
 
-Posteriormente, pretendo implementar mais funcionalidades e fazer a separação por tópicos.
-Vale resaltar que as funções não estão completas.
+Este sistema foi desenvolvido como projeto da disciplina **Projeto de Software** da **Universidade Federal de Alagoas (UFAL)**, ministrada pelo professor doutor **Baldoino Fonseca dos Santos Neto**.
+
+O sistema gerencia uma escola com funções para:
+
+- 👨‍🎓 Alunos  
+- 👨‍🏫 Funcionários (professores)  
+- 👪 Responsáveis  
+
+Desenvolvido pelo aluno **Zilderlan Naty dos Santos**.
+
+---
+
+## ✨ Funcionalidades Implementadas
+
+- ✅ Cadastro de alunos, funcionários e responsáveis (com nome e senha)  
+- 🔐 Login seguro por tipo de usuário (aluno, funcionário, responsável)  
+- 📝 Menus personalizados para cada perfil  
+- ⏰ Registro de presença **somente para funcionários**  
+- 📊 Lançamento e consulta de notas  
+- 📚 Distribuição e consulta de materiais  
+- 🗓️ Agendamento de provas  
+- 🎯 Registro de atividades extracurriculares  
+- 🚌 Rastreamento simulado do transporte escolar  
+- 💰 Processamento de pagamentos de mensalidades  
+- 📆 Gerenciamento de turmas e horários  
+- 👀 Consulta detalhada para alunos e responsáveis  
+- ❌ Mensagens claras de erro e avisos para dados inválidos ou faltantes  
+
+---
+
+## ⚠️ Regras e Restrições
+
+- 📅 Datas devem ser digitadas no formato `DD/MM/AAAA`  
+- 🔢 IDs precisam ser números válidos para operações específicas  
+- 🔒 Senhas simples, sem criptografia  
+- 🚫 Apenas funcionários podem registrar presenças e fazer lançamentos administrativos  
+- 👪 Para cadastrar um responsável, informe o ID de um aluno já cadastrado  
+- 💾 Dados são armazenados **apenas na memória**, e são perdidos ao fechar o programa  
+- ⚠️ Entrada inválida gera mensagem de erro e pedido para tentar novamente  
+
+---
+
+## 🛠️ Como Rodar em Outro Computador
+
+1. Instale o **Python 3.6+** ([download aqui](https://www.python.org/downloads/))  
+2. Baixe os arquivos `system.py` e `main.py` e coloque-os na mesma pasta  
+3. Abra o terminal na pasta do projeto  
+4. Execute o comando:  
+   ```bash
+   python main.py
