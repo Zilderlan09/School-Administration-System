@@ -1,9 +1,10 @@
 from datetime import datetime
+from abc import ABC, abstractmethod
 
 # ========================
-# Classe Base
+# Classe Base (Abstrata)
 # ========================
-class Usuario:
+class Usuario(ABC):
     def __init__(self, id, nome, senha):
         self.id = id
         self.nome = nome
@@ -12,8 +13,9 @@ class Usuario:
     def validar_senha(self, senha):
         return self._senha == senha
 
+    @abstractmethod
     def exibir_tipo(self):
-        return "Usuário"
+        pass
 
 # ========================
 # Subclasses
@@ -22,10 +24,10 @@ class Aluno(Usuario):
     def __init__(self, id, nome, senha):
         super().__init__(id, nome, senha)
         self.presencas = []
-        self.notas = []       # cada item: {"nota": valor, "disciplina": str}
-        self.materiais = []   # cada item: {"material": str, "disciplina": str}
-        self.atividades = []  # cada item: {"atividade": str, "disciplina": str}
-        self.provas = []      # cada item: {"nome": str, "data": str, "disciplina": str}
+        self.notas = []
+        self.materiais = []
+        self.atividades = []
+        self.provas = []
 
     def exibir_tipo(self):
         return "Aluno"
@@ -33,12 +35,14 @@ class Aluno(Usuario):
 class Funcionario(Usuario):
     def __init__(self, id, nome, senha, cargo, disciplina=None):
         super().__init__(id, nome, senha)
-        self.cargo = cargo
-        self.disciplina = disciplina  # só usado se for professor
+        self.cargo = cargo.lower()
+        self.disciplina = disciplina
 
     def exibir_tipo(self):
         if self.cargo == "professor":
             return f"Funcionário ({self.cargo} de {self.disciplina})"
+        elif self.cargo == "diretor":
+            return "Funcionário (diretor)"
         return f"Funcionário ({self.cargo})"
 
 class Responsavel(Usuario):
@@ -60,6 +64,38 @@ class Escola:
         self.turmas = []
         self.proximo_id = 1
 
+        # -------------------
+        # Banco de exemplos
+        # -------------------
+        # Criando alunos
+        aluno1 = Aluno(self.proximo_id, "João", "123")
+        self.alunos.append(aluno1)
+        self.proximo_id += 1
+
+        aluno2 = Aluno(self.proximo_id, "Maria", "123")
+        self.alunos.append(aluno2)
+        self.proximo_id += 1
+
+        # Criando professor
+        prof = Funcionario(self.proximo_id, "Carlos", "123", "professor", "Matemática")
+        self.funcionarios.append(prof)
+        self.proximo_id += 1
+
+        # Criando diretor
+        diretor = Funcionario(self.proximo_id, "Fernanda", "123", "diretor")
+        self.funcionarios.append(diretor)
+        self.proximo_id += 1
+
+        # Criando motorista
+        motorista = Funcionario(self.proximo_id, "José", "123", "motorista")
+        self.funcionarios.append(motorista)
+        self.proximo_id += 1
+
+        # Criando responsável (ligado ao aluno João)
+        responsavel = Responsavel(self.proximo_id, "Ana", "123", aluno1.id)
+        self.responsaveis.append(responsavel)
+        self.proximo_id += 1
+
     # ----------------------
     # Cadastro
     # ----------------------
@@ -74,6 +110,8 @@ class Escola:
             self.funcionarios.append(funcionario)
             if cargo == "professor":
                 print(f"Professor {nome} de {disciplina} cadastrado (ID {self.proximo_id})")
+            elif cargo == "diretor":
+                print(f"Diretor {nome} cadastrado (ID {self.proximo_id})")
             else:
                 print(f"Funcionário {nome} cadastrado como {cargo} (ID {self.proximo_id})")
 
@@ -95,7 +133,6 @@ class Escola:
     # Login
     # ----------------------
     def login(self, nome, senha, tipo):
-        lista = []
         if tipo == "aluno":
             lista = self.alunos
         elif tipo == "funcionario":
